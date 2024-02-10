@@ -1,0 +1,62 @@
+.todo_container {
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url(./../../assets/bg/mountains.jpg);
+    background-position: center;
+    background-size: cover;
+    //  background-color: #f5f2f2;
+  
+    .add_todo_section_main_grid{
+      height: 200px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+  
+      .add_todo_section_main_box{
+        width: 40%;
+        height: 50px;
+        border-radius: 25px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      @media screen and (max-width: 900px) {
+          .add_todo_section_main_box {
+              width: 60%;
+          }
+      }
+      @media screen and (max-width: 600px) {
+          .add_todo_section_main_box {
+              width: 80%;
+          }
+      }
+    }
+  
+    .todo_list_section_main_grid{
+
+      width: 100%;
+      height: 600px;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      
+      .todo_list_section_main_box {
+        width: 40%;
+        height: 600px;
+        background-color: #ffffff3b;
+        border-radius: 25px;
+        border: 2px solid rgb(255, 255, 255);; 
+      }    
+      @media screen and (max-width: 900px) {
+          .todo_list_section_main_box {
+              width: 60%;
+          }
+      }
+      @media screen and (max-width: 600px) {
+          .todo_list_section_main_box {
+              width: 80%;
+          }
+      }
+    }
+  }
