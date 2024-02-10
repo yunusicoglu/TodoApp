@@ -1,14 +1,12 @@
 import { Box, Button, TextField, Typography } from '@mui/material'
-import { useCallback, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import {auth} from '../../firebase'
 import { signInWithEmailAndPassword } from "firebase/auth"
+import { useCallback, useState } from 'react'
+import { auth } from '../../firebase'
 
 
 const SignIn = () => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  const navigate = useNavigate()
 
 
   const handleButtonClick = useCallback((e) => {

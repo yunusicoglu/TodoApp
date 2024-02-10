@@ -13,7 +13,7 @@ const ContainerMain = () => {
         <Grid className='main_index'>
           <Routes>
             <Route path='/' element={<MainLayout/>}>
-              <Route path="/" element={<Todo/>} />
+              <Route path="/todo" element={<Todo/>} />
             </Route>
             <Route path='/' element={<AuthLayout/>}>
               <Route path='/login' element={<Welcome/>} />
