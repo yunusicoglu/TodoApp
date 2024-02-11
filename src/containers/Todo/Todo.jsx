@@ -1,13 +1,11 @@
-import {Box, Grid, IconButton } from '@mui/material'
-import './todo.scss'
-import TodoList from './TodoList'
-import AddTodo from './AddTodo'
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate } from 'react-router-dom';
+import { Grid, IconButton } from '@mui/material';
 import { signOut } from 'firebase/auth';
-import {auth} from '../../firebase'
 import { useCallback } from 'react';
-import {useCollectionData} from 'react-firebase-hooks/firestore'
+import { auth } from '../../firebase';
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
+import './todo.scss';
 
 const Todo = () => {
   const handleSignOut = useCallback(() => {
