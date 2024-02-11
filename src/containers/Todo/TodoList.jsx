@@ -10,21 +10,24 @@ const collectionName = import.meta.env.VITE_COLLECTION_TODOS
 const collectionRef = collection(db, collectionName)
 
 //takes all todos
-const querySnapshot = await getDocs(collectionRef)
 
 const TodoList = () => {
   const [shownTodos, setShownTodos] = useState([])
 
   useEffect(() => {
-    const receivedTodos = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      name: doc.data().name,
-      createdBy: doc.data().created_by,
-      createdAt: doc.data().created_at,
-    }));
-  
-    setShownTodos(receivedTodos);
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(collectionRef);
+      const receivedTodos = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        createdBy: doc.data().created_by,
+        createdAt: doc.data().created_at,
+      }));
+      setShownTodos(receivedTodos);
+    };
+    fetchData();
   }, []);
+  
 
   //takes todos from redux
   //const todos = useSelector(selectTodos)
