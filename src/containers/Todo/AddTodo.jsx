@@ -3,7 +3,7 @@ import { Box, Button, IconButton, TextField, Tooltip, Typography, styled } from 
 import { nanoid } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from './redux/todosSlice';
+import { addTodo } from '../../redux/todosSlice';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 

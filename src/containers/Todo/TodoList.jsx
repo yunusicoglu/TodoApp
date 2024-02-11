@@ -1,7 +1,7 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Divider, Grid, IconButton, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { selectTodos } from './redux/todosSlice';
+import { selectTodos } from '../../redux/todosSlice';
 import { useEffect, useState } from 'react';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
