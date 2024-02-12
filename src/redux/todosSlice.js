@@ -8,8 +8,14 @@ const todosSlice = createSlice({
     addTodo:{
       reducer: (state, action) => {
         state.push(action.payload)
-      }
-    }
+      },
+      prepare: (text) => ({
+        payload: { text },
+        meta: { 
+
+        },
+      }),
+    },
   },
 })
 
