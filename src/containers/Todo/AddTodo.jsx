@@ -16,7 +16,7 @@ const putTodo = async (data) => {
       created_at: serverTimestamp(),
     });
   } catch (error) {
-    console.error('Console message for adding error :', error);
+    console.error('Todo adding error message :', error);
     // throw error;
   }
 };
@@ -56,9 +56,8 @@ const AddTodo = () => {
     const handleAddButton = () => {
       if (todoInput) {
         const id = nanoid();
-        dispatch(addTodo({ text: todoInput }));
+        dispatch(addTodo({ text: todoInput }, ));
         setTodoInput('')
-
         //firebase
         const todo = {name:todoInput, created_by:"userId", id:id}
         handleAddTodo(todo)
