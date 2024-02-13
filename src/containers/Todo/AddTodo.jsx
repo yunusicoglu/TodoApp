@@ -56,7 +56,7 @@ const AddTodo = () => {
     const handleAddButton = () => {
       if (todoInput) {
         const id = nanoid();
-        dispatch(addTodo({ text: todoInput } ));
+        dispatch(addTodo({ text: todoInput }));
         setTodoInput('')
         //firebase
         const todo = {name:todoInput, created_by:"userId", id:id}
