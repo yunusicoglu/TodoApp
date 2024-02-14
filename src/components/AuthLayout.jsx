@@ -27,7 +27,7 @@ const AuthLayout = () => {
 
 
   if (user) {
-      return <Navigate to='/todo' replace/>
+      return <Navigate to='/' replace/>
   }
 
   return (

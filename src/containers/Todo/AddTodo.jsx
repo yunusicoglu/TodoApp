@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/todosSlice';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { getAuth } from 'firebase/auth';
 
 const putTodo = async (data) => {
   try {
@@ -34,11 +35,9 @@ const AddTodo = () => {
     const [todoInput, setTodoInput] = useState('')
 
     //firebase
-    const [isPutTodoSuccess, setIsPutTodoSuccess] = useState(false);
     const handleAddTodo = async (todoData) => {
       try {
         await putTodo(todoData);
-        setIsPutTodoSuccess(true);
       } catch (error) {
         console.error(error);
       }
@@ -55,12 +54,19 @@ const AddTodo = () => {
   
     const handleAddButton = () => {
       if (todoInput) {
+        const auth = getAuth();
+        const user = auth.currentUser; //user.uid
         const id = nanoid();
-        dispatch(addTodo({ text: todoInput }));
+        const todo = {
+          id:id,
+          createdBy:user.uid,
+          name:todoInput,
+        }
+        dispatch(addTodo(todo));
         setTodoInput('')
+        
         //firebase
-        const todo = {name:todoInput, created_by:"userId", id:id}
-        handleAddTodo(todo)
+        //handleAddTodo(todo)
       }
     }
   

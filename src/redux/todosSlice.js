@@ -1,4 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
 
 
 const todosSlice = createSlice({
@@ -7,13 +10,25 @@ const todosSlice = createSlice({
   reducers:{
     addTodo:{
       reducer: (state, action) => {
-        state.push(action.payload)
+        const { todo } = action.payload;
+        try {
+          let collectionName=import.meta.env.VITE_COLLECTION_TODOS
+          setDoc(doc(db, collectionName, todo.id), {
+            name: todo.name,
+            created_by: todo.createdBy,
+            created_at: serverTimestamp(),
+          }); 
+        } catch (error) {
+          console.error('Todo adding error message :', error);
+        }
       },
-      prepare: (text) => ({
-        payload: { text },
-        meta: { 
-
+      prepare: (todo) => ({
+        payload: {
+          todo,
         },
+        // meta: { 
+
+        // },
       }),
     },
   },

@@ -30,7 +30,8 @@ const TodoList = () => {
   
 
   //takes todos from redux
-  //const todos = useSelector(selectTodos)
+  // const todos = useSelector(selectTodos)
+  // console.log('todos: ',todos)
 
   //for taking one todo
   // const [documentData, setDocumentData] = useState(null);
