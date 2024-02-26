@@ -1,10 +1,10 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Divider, Grid, IconButton, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { selectTodos } from '../../redux/todosSlice';
+import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../firebase';
+import { getTodos } from '../../redux/todosSlice';
 
 const collectionName = import.meta.env.VITE_COLLECTION_TODOS
 const collectionRef = collection(db, collectionName)
@@ -12,26 +12,14 @@ const collectionRef = collection(db, collectionName)
 //takes all todos
 
 const TodoList = () => {
-  const [shownTodos, setShownTodos] = useState([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const querySnapshot = await getDocs(collectionRef);
-      const receivedTodos = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        name: doc.data().name,
-        createdBy: doc.data().created_by,
-        createdAt: doc.data().created_at,
-      }));
-      setShownTodos(receivedTodos);
-    };
-    fetchData();
-  }, []);
+  const {loading, todos, error} = useSelector((state)=>state.todos)
+  // const todosfb = useSelector((state) => state.todosfb);
+  // console.log("todos: ",todosfb)
   
-
-  //takes todos from redux
-  // const todos = useSelector(selectTodos)
-  // console.log('todos: ',todos)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTodos())
+  }, [dispatch])
 
   //for taking one todo
   // const [documentData, setDocumentData] = useState(null);
@@ -72,8 +60,7 @@ const TodoList = () => {
             <Divider sx={{bgcolor:"#ffdede",borderBottomWidth: 2}}/>
           </Box>
           <Box sx={{overflowY:"auto", width:"100%", height:"505px"}}>
-            {/* {isLoading&&<Typography>Yükleniyor</Typography>} */}
-            {shownTodos.map((todo) => (
+            {todos&&todos.map((todo) => (
               <Box key={todo.id} sx={{ width:"100%", height:"40px", pt:"10px", pb:"0px", display:"flex", flexDirection:"column", justifyContent:"space-between",
                 ":hover":{bgcolor:"rgb(255, 255, 255, 0.3)"}}}>
                 <Box sx={{width:"100%" ,display:'flex',}}>

@@ -6,12 +6,12 @@ import { auth } from '../../firebase';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 import './todo.scss';
+import { useSelector } from 'react-redux';
 
 const Todo = () => {
   const handleSignOut = useCallback(() => {
     signOut(auth)
   }, [])
-
   return (
     <>
       <Grid className='todo_container'>

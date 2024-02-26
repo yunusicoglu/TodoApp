@@ -1,26 +1,11 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Button, IconButton, TextField, Tooltip, Typography, styled } from '@mui/material';
 import { nanoid } from '@reduxjs/toolkit';
-import { useEffect, useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/todosSlice';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { getAuth } from 'firebase/auth';
 
-const putTodo = async (data) => {
-  try {
-    let collectionName=import.meta.env.VITE_COLLECTION_TODOS
-    await setDoc(doc(db, collectionName, data.id), {
-      name: data.name,
-      created_by: data.created_by,
-      created_at: serverTimestamp(),
-    });
-  } catch (error) {
-    console.error('Todo adding error message :', error);
-    // throw error;
-  }
-};
 
 
 //close iconbutton bg
@@ -34,23 +19,13 @@ const StyledIconButton = styled(IconButton)({
 const AddTodo = () => {
     const [todoInput, setTodoInput] = useState('')
 
-    //firebase
-    const handleAddTodo = async (todoData) => {
-      try {
-        await putTodo(todoData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    //finish firebase
-    
-    
     
     const dispatch = useDispatch();
   
     const handleOnChange = (event) => {
       setTodoInput(event.target.value)
     }
+
   
     const handleAddButton = () => {
       if (todoInput) {
@@ -66,7 +41,6 @@ const AddTodo = () => {
         setTodoInput('')
         
         //firebase
-        //handleAddTodo(todo)
       }
     }
   
