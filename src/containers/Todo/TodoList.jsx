@@ -1,55 +1,19 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Divider, Grid, IconButton, Typography } from '@mui/material';
-import { collection, getDocs } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { db } from '../../firebase';
 import { getTodos } from '../../redux/todosSlice';
 
-const collectionName = import.meta.env.VITE_COLLECTION_TODOS
-const collectionRef = collection(db, collectionName)
 
-//takes all todos
+
 
 const TodoList = () => {
   const {loading, todos, error} = useSelector((state)=>state.todos)
-  // const todosfb = useSelector((state) => state.todosfb);
-  // console.log("todos: ",todosfb)
   
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTodos())
   }, [dispatch])
-
-  //for taking one todo
-  // const [documentData, setDocumentData] = useState(null);
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(true);
-
-
-  //takes one todo
-  // useEffect(() => {
-  //   const getDocument = async () => {
-  //     try {
-  //       const docRef = doc(db, collectionName, slug);
-  //       const docSnap = await getDoc(docRef);
-
-  //       if (docSnap.exists()) {
-  //         setDocumentData(docSnap.data());
-  //         console.log("Document data:", docSnap.data());
-  //       } else {
-  //         setError("No such document!");
-  //       }
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   getDocument();
-  // }, []);
-
 
   return (
     <>

@@ -40,7 +40,6 @@ const AddTodo = () => {
         dispatch(addTodo(todo));
         setTodoInput('')
         
-        //firebase
       }
     }
   
