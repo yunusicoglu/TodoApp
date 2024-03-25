@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, query, where, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { getAuth } from 'firebase/auth'
 
 const collectionName=import.meta.env.VITE_COLLECTION_TODOS
 const collectionRef = collection(db, collectionName)
@@ -8,14 +9,21 @@ const collectionRef = collection(db, collectionName)
 export const getTodos = createAsyncThunk(
   'todos/getTodos',
   async()=>{
-    const querySnapshot = await getDocs(collectionRef);
-    const receivedTodos = await querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      name: doc.data().name,
-      createdBy: doc.data().created_by,
-      createdAt: doc.data().created_at.toDate().toISOString(), // Seri hale getirilebilir dizeye dönüştürme
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      const userId = user.uid;
+      const q = query(collectionRef, where("created_by", "==", userId));
+      const querySnapshot = await getDocs(q);
+      const receivedTodos = await querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        createdBy: doc.data().created_by,
+        createdAt: doc.data().created_at.toDate().toISOString(), // Seri hale getirilebilir dizeye dönüştürme
     }));
     return receivedTodos
+    }
+    
   }
 )
 
