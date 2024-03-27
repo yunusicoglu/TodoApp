@@ -9,7 +9,6 @@ import { getTodos } from '../../redux/todosSlice';
 
 const TodoList = () => {
   const {loading, todos, error} = useSelector((state)=>state.todos)
-  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTodos())

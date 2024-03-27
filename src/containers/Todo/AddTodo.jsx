@@ -5,6 +5,7 @@ import { getAuth } from 'firebase/auth';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/todosSlice';
+import { serverTimestamp } from 'firebase/firestore';
 
 
 
@@ -36,6 +37,7 @@ const AddTodo = () => {
           id:id,
           createdBy:user.uid,
           name:todoInput,
+          createdAt: serverTimestamp(),
         }
         dispatch(addTodo(todo));
         setTodoInput('')

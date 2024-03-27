@@ -42,7 +42,7 @@ const todosSlice = createSlice({
           setDoc(doc(db, collectionName, todo.id), {
             name: todo.name,
             created_by: todo.createdBy,
-            created_at: serverTimestamp(),
+            created_at: todo.createdAt,
           }); 
           console.log(todo.name,"görevi eklendi.")
         } catch (error) {
