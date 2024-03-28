@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, query, where, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, query, where, doc, getDocs, serverTimestamp, setDoc, orderBy, Timestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from 'firebase/auth'
 
@@ -13,13 +13,17 @@ export const getTodos = createAsyncThunk(
     const user = auth.currentUser;
     if (user) {
       const userId = user.uid;
-      const q = query(collectionRef, where("created_by", "==", userId));
+      const q = query(
+        collectionRef,
+        where('userRef', '==', userId),
+        orderBy('createdAt', 'asc'),
+      );
       const querySnapshot = await getDocs(q);
       const receivedTodos = await querySnapshot.docs.map((doc) => ({
         id: doc.id,
         name: doc.data().name,
-        createdBy: doc.data().created_by,
-        createdAt: doc.data().created_at.toDate().toISOString(), // Seri hale getirilebilir dizeye dönüştürme
+        createdBy: doc.data().userRef,
+        createdAt: doc.data().createdAt.toDate().toISOString(), // Seri hale getirilebilir dizeye dönüştürme
     }));
     return receivedTodos
     }
@@ -41,10 +45,9 @@ const todosSlice = createSlice({
         try {
           setDoc(doc(db, collectionName, todo.id), {
             name: todo.name,
-            created_by: todo.createdBy,
-            created_at: todo.createdAt,
+            userRef: todo.createdBy,
+            createdAt: todo.createdAt,
           }); 
-          console.log(todo.name,"görevi eklendi.")
         } catch (error) {
           console.error('Todo adding error message :', error);
         }
