@@ -19,7 +19,7 @@ const TodoList = ({newTodo}) => {
   useEffect(() => {
     setTodoList(todos)
     if (Object.keys(newTodo).length > 0) { //"obje dolu mu" kontrolü
-      setTodoList([...todoList, newTodo])
+      setTodoList([...todos, newTodo])
     }
   }, [todos, newTodo])
 
