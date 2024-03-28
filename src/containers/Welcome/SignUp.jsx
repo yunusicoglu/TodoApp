@@ -20,11 +20,17 @@ const SignUp = () => {
     })
   },[email, password])
 
+  const handleAddKeyDown = (event) => {
+    if (event.key==='Enter') {
+      handleButtonClick()
+    }
+  }
+
   return (
     <>
       <Box className='sign_up'>
         <TextField type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='E-Posta' sx={{mt:"30px", bgcolor:"GhostWhite", width:"90%"}} inputProps={{style:{height:'18px'}}}/>
-        <TextField type='password' value={password} onChange={(e) => setPassword(e.target.value)}  placeholder='Şifre' sx={{mt:"18px", bgcolor:"GhostWhite", width:"90%" }} inputProps={{style:{height:'18px'}}}/>
+        <TextField type='password' onKeyDown={handleAddKeyDown} value={password} onChange={(e) => setPassword(e.target.value)}  placeholder='Şifre' sx={{mt:"18px", bgcolor:"GhostWhite", width:"90%" }} inputProps={{style:{height:'18px'}}}/>
         <Button onClick={handleButtonClick} color='success' variant='contained' sx={{textTransform:"none", mt:"25px", width:"90%"}}>
         <Typography sx={{fontSize:"20px"}}>Kayıt Ol</Typography>
         </Button>

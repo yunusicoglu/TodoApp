@@ -17,7 +17,7 @@ const StyledIconButton = styled(IconButton)({
   },
 });
 
-const AddTodo = () => {
+const AddTodo = ({addNewTodo}) => {
     const [todoInput, setTodoInput] = useState('')
 
     
@@ -41,6 +41,8 @@ const AddTodo = () => {
         }
         dispatch(addTodo(todo));
         setTodoInput('')
+        //Canlı güncelleme için todo listesine eklenir.
+        addNewTodo(todo)
         
       }
     }
