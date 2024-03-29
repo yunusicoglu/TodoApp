@@ -15,9 +15,7 @@ const ContainerMain = () => {
             <Route path='/' element={<MainLayout/>}>
               <Route path="/" element={<Todo/>} />
             </Route>
-            <Route path='/login' element={<AuthLayout/>}>
-              <Route path='/login' element={<Welcome/>} />
-            </Route>
+            <Route path='/login' element={<Welcome/>} />
           </Routes>
         </Grid>
       </Grid>

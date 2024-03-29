@@ -4,9 +4,18 @@ import { useState } from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import './welcome.scss';
+import { auth } from '../../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Navigate } from 'react-router-dom';
+
 
 const Welcome = () => {
+  const [user, isLoading,] = useAuthState(auth)
   const [alignment, setAlignment] = useState('signIn')
+
+  if (user) {
+    return <Navigate to='/' replace/>
+}
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
