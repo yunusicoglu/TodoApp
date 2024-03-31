@@ -39,7 +39,7 @@
       height: 600px;
       display: flex;
       justify-content: center;
-      margin-top: 30px;
+      margin-top: 60px;
       
       .todo_list_section_main_box {
         width: 40%;
@@ -47,6 +47,7 @@
         background-color: #ffffff3b;
         border-radius: 25px;
         border: 2px solid rgb(255, 255, 255);; 
+        box-sizing: border-box;
       }    
       @media screen and (max-width: 900px) {
           .todo_list_section_main_box {
