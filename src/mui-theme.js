@@ -18,9 +18,13 @@ const theme = createTheme({
       dark: '#ba000d',
       contrastText: '#000',
     },
+    muiblue:{
+      main:'#4b8ae3',
+      contrastText: '#fff',
+    },
     muiwhite: {
       main: '#fff'
-    }
+    },
   },
 });
 

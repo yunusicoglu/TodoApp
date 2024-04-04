@@ -18,8 +18,8 @@ const TodoList = ({newTodo}) => {
 
   useEffect(() => {
     setTodoList(todos)
-    if (Object.keys(newTodo).length > 0) { //"obje dolu mu" kontrolü
-      setTodoList([...todos, newTodo])
+    if (Object.keys(newTodo).length > 0) { // "obje dolu mu" kontrolü
+      setTodoList([...todoList, newTodo])
     }
   }, [todos, newTodo])
 
@@ -30,10 +30,10 @@ const TodoList = ({newTodo}) => {
     <>
       <Box className='todo_list_section_main_box' >
         <Box sx={{ height:"50px", mb:"10px", pt:"15px", borderTopRightRadius:"25px", borderTopLeftRadius:"25px", display:"flex", flexDirection:"column", justifyContent:"space-between"}}>
-          <Typography sx={{fontSize:"25px", fontWeight:600, ml:"20px"}} >Yapılacaklar Listesi</Typography>
+          <Typography sx={{fontSize:"25px", fontWeight:600, ml:"20px",}} >Yapılacaklar Listesi</Typography>
           <Divider sx={{bgcolor:"#ffdede",borderBottomWidth: 2}}/>
         </Box>
-        <Box sx={{overflowY:"auto", width:"100%", height:"505px"}}>
+        <Box sx={{overflowY:"auto", width:"100%", height:"85%"}}>
           {todoList&&todoList.map((todo) => (
             <Box key={todo.id} sx={{ width:"100%", height:"40px", pt:"10px", pb:"0px", display:"flex", flexDirection:"column", justifyContent:"space-between",
               ":hover":{bgcolor:"rgb(255, 255, 255, 0.3)"}}}>
