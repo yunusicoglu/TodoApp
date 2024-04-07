@@ -4,7 +4,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { getAuth } from 'firebase/auth';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../redux/todosSlice';
+import { addTodoAction } from '../../redux/todosSlice';
 import { serverTimestamp } from 'firebase/firestore';
 
 
@@ -17,7 +17,7 @@ const StyledIconButton = styled(IconButton)({
   },
 });
 
-const AddTodo = ({addNewTodo}) => {
+const AddTodo = () => {
     const [todoInput, setTodoInput] = useState('')
 
     
@@ -39,10 +39,9 @@ const AddTodo = ({addNewTodo}) => {
           name:todoInput,
           createdAt: serverTimestamp(),
         }
-        dispatch(addTodo(todo));
+        dispatch(addTodoAction(todo));
         setTodoInput('')
-        //Canlı güncelleme için todo listesine eklenir.
-        addNewTodo(todo)
+        
         
       }
     }

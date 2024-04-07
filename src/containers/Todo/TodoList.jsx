@@ -2,29 +2,36 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Box, Divider, Grid, IconButton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTodos } from '../../redux/todosSlice';
+import { deleteTodoAction, getTodos } from '../../redux/todosSlice';
 
 
 
 
-const TodoList = ({newTodo}) => {
-  const {loading, todos, error} = useSelector((state)=>state.todos) 
+const TodoList = () => {
+  const {loading, todos, error, newTodo, deletedTodo} = useSelector((state)=>state.todos) 
   const dispatch = useDispatch();
   const [todoList, setTodoList] = useState([])
   useEffect(() => {
     dispatch(getTodos())
   }, [dispatch])
   
-
   useEffect(() => {
     setTodoList(todos)
-    if (Object.keys(newTodo).length > 0) { // "obje dolu mu" kontrolü
-      setTodoList([...todoList, newTodo])
+  }, [todos])
+  
+
+  useEffect(() => {
+    if (deletedTodo) {
+      dispatch(getTodos())
     }
-  }, [todos, newTodo])
+    //eslint-disable-next-line
+  }, [deletedTodo])
+  
 
-
-
+  const handleDelete = (todoId) => {
+    dispatch(deleteTodoAction(todoId));
+  }
+  
   
   return (
     <>
@@ -41,7 +48,7 @@ const TodoList = ({newTodo}) => {
                 <Typography sx={{ml:"20px",fontSize:"20px", width:"95%"}}>
                   {todo.name}
                 </Typography>
-                <IconButton sx={{mt:"-6px", mr:"12px"}}>
+                <IconButton onClick={()=>handleDelete(todo.id)} sx={{mt:"-6px", mr:"12px"}}>
                   <ClearIcon/>
                 </IconButton>
               </Box>

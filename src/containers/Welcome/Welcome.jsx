@@ -11,7 +11,6 @@ const Welcome = () => {
     setAlignment(newAlignment);
   };
 
-console.log(alignment)
   return (
     <>
       <Grid className='welcome_container'>
