@@ -65,10 +65,10 @@ const SignIn = ({handlePageChange}) => {
         </div>
         <div className='login_button'></div>
         <Button onClick={handleButtonClick} variant='contained' sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", mt:"30px", width:"100%",
-                 borderRadius:"30px", ":hover":{bgcolor:'#155dc2'}}}>
+                 borderRadius:"30px", ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, transition:'transform 0.2s ease-in-out'}}>
           <Typography sx={{fontSize:"20px"}}>Giriş Yap</Typography>
         </Button>
-        <Typography sx={{mt:"17px", fontSize:"20px"}} >Hesabınız yok mu? <Button onClick={()=>handlePageChange('signUp')} sx={{textTransform:"none", fontSize:"20px", ":hover":{backgroundColor:"white"}}}>Kayıt Olun</Button> </Typography>
+        <Typography sx={{mt:"17px", fontSize:"20px"}} >Hesabınız yok mu? <Button onClick={()=>handlePageChange('signUp')} sx={{textTransform:"none", fontSize:"20px", ":hover":{backgroundColor:"white", transform:'scale(1.1)'}, transition:'transform 0.1s ease-in-out'}}>Kayıt Olun</Button> </Typography>
       </Box>
     </>
   )

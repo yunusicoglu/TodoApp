@@ -66,10 +66,10 @@ const SignUp = ({handlePageChange}) => {
         </div>
         <div className='login_button'></div>
         <Button onClick={handleButtonClick} variant='contained' sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", mt:"30px", width:"100%",
-                 borderRadius:"30px", ":hover":{bgcolor:'#155dc2'}}}>
+                 borderRadius:"30px", ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, transition:'transform 0.2s ease-in-out'}}>
           <Typography sx={{fontSize:"20px"}}>Kayıt Ol</Typography>
         </Button>
-        <Typography sx={{mt:"17px", fontSize:"20px"}} >Zaten kayıtlı mısınız? <Button onClick={()=>handlePageChange('signIn')} sx={{textTransform:"none", fontSize:"20px", ":hover":{backgroundColor:"white"}}}>Giriş Yapın</Button> </Typography>
+        <Typography sx={{mt:"17px", fontSize:"20px"}} >Zaten kayıtlı mısınız? <Button onClick={()=>handlePageChange('signIn')} sx={{textTransform:"none", fontSize:"20px", ":hover":{backgroundColor:"white", transform:'scale(1.1)'}, transition:'transform 0.1s ease-in-out'}}>Giriş Yapın</Button> </Typography>
       </Box>
       {/* <Box className='login_inputs'>
         <TextField type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='E-Posta' sx={{mt:"30px", bgcolor:"GhostWhite", width:"90%"}} inputProps={{style:{height:'18px'}}}/>

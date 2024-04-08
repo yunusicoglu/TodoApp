@@ -11,6 +11,7 @@ const TodoList = () => {
   const {loading, todos, error, newTodo, deletedTodo} = useSelector((state)=>state.todos) 
   const dispatch = useDispatch();
   const [todoList, setTodoList] = useState([])
+  const [growText, setGrowText] = useState('')
   useEffect(() => {
     dispatch(getTodos())
   }, [dispatch])
@@ -31,6 +32,8 @@ const TodoList = () => {
   const handleDelete = (todoId) => {
     dispatch(deleteTodoAction(todoId));
   }
+
+
   
   
   return (
@@ -43,12 +46,12 @@ const TodoList = () => {
         <Box sx={{overflowY:"auto", width:"100%", height:"85%"}}>
           {todoList&&todoList.map((todo) => (
             <Box key={todo.id} sx={{ width:"100%", height:"40px", pt:"10px", pb:"0px", display:"flex", flexDirection:"column", justifyContent:"space-between",
-              ":hover":{bgcolor:"rgb(255, 255, 255, 0.3)"}}}>
+              ":hover":{bgcolor:"rgb(255, 255, 255, 0.3)"}}} onMouseEnter={()=>setGrowText(todo.id)} onMouseLeave={()=>setGrowText('')}> 
               <Box sx={{width:"100%" ,display:'flex',}}>
-                <Typography sx={{ml:"20px",fontSize:"20px", width:"95%"}}>
+                <Typography sx={{ml:"20px", width:"95%", fontSize: growText===todo.id ? '21px' : '20px'}} >
                   {todo.name}
                 </Typography>
-                <IconButton onClick={()=>handleDelete(todo.id)} sx={{mt:"-6px", mr:"12px"}}>
+                <IconButton onClick={()=>handleDelete(todo.id)} sx={{mt:"-6px", mr:"12px", ':hover':{transform:'scale(1.2)'}, transition:'transform 0.2s ease-in-out'}}>
                   <ClearIcon/>
                 </IconButton>
               </Box>

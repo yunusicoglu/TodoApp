@@ -18,7 +18,7 @@ const Todo = () => {
   return (
     <>
       <Grid className='todo_container'>
-        <IconButton sx={{position:"absolute", color:"white", left:"10px", top:"10px"}} onClick={handleSignOut}>
+        <IconButton sx={{position:"absolute", color:"white", left:"10px", top:"10px", ':hover':{transform:'scale(1.15)'}, transition:'transform 0.2s ease-in-out'}} onClick={handleSignOut}>
           <LogoutIcon sx={{fontSize: 35, ml:"5px" }}/>
         </IconButton>
         <Grid className='add_todo_section_main_grid'>

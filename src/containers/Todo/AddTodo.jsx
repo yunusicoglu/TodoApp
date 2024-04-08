@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodoAction } from '../../redux/todosSlice';
 import { serverTimestamp } from 'firebase/firestore';
+import { Scale } from '@mui/icons-material';
 
 
 
@@ -67,14 +68,14 @@ const AddTodo = () => {
               paddingLeft:"10px", color:"#000000", fontSize:"22px",}, 
               endAdornment: (
                 <Tooltip title="Esc" placement='top'>
-                  <StyledIconButton onClick={handleClearButton} edge="end" aria-label="delete" size="large">
-                    <ClearIcon />
+                  <StyledIconButton onClick={handleClearButton} edge="end" aria-label="delete" size="medium" sx={{ '&:hover': {transform: "scale(1.2)",},transition: "transform 0.1s ease-in-out",}}>
+                    <ClearIcon  />
                   </StyledIconButton>
                 </Tooltip>
               )}}/>
             <Tooltip title="Enter" placement='top'>
               <Button onClick={handleAddButton}
-                sx={{h:"12%",height:"100%", bgcolor:"#242421", '&:hover': {bgcolor: '#000000'}, textTransform:"none", borderTopRightRadius:"25px", borderBottomRightRadius:"25px"}}>
+                sx={{h:"12%",height:"100%", bgcolor:"#242421", '&:hover': {bgcolor: '#000000',transform: "scale(1.1)",},transition: "transform 0.1s ease-in-out", textTransform:"none", borderTopRightRadius:"25px", borderBottomRightRadius:"25px"}}>
                 <Typography sx={{fontSize:"22px", color:"#ffffff", fontWeight:550}}>Ekle</Typography>
               </Button>
             </Tooltip>
