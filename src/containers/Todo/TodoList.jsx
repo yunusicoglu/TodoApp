@@ -1,4 +1,5 @@
 import ClearIcon from '@mui/icons-material/Clear';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { Box, Divider, Grid, IconButton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,8 +52,8 @@ const TodoList = () => {
                 <Typography sx={{ml:"20px", width:"95%", fontSize: growText===todo.id ? '21px' : '20px'}} >
                   {todo.name}
                 </Typography>
-                <IconButton onClick={()=>handleDelete(todo.id)} sx={{mt:"-6px", mr:"12px", ':hover':{transform:'scale(1.2)'}, transition:'transform 0.2s ease-in-out'}}>
-                  <ClearIcon/>
+                <IconButton onClick={()=>handleDelete(todo.id)} sx={{mt:"-6px", mr:"12px", ':hover':{transform:'scale(1.2)', backgroundColor:"transparent", }, transition:'transform 0.2s ease-in-out'}}>
+                  <TaskAltIcon sx={{color:"#363636",}}/>
                 </IconButton>
               </Box>
               <Divider sx={{mx:"15px"}}/>
