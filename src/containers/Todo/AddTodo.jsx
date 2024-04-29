@@ -32,7 +32,7 @@ const AddTodo = () => {
     const handleAddButton = () => {
       if (todoInput) {
         const auth = getAuth();
-        const user = auth.currentUser; //user.uid
+        const user = auth.currentUser; //user.uid = user id
         const id = nanoid();
         const todo = {
           id:id,
