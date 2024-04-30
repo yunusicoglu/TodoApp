@@ -45,9 +45,8 @@ const TodoList = () => {
           <Divider sx={{bgcolor:"#ffdede",borderBottomWidth: 2}}/>
         </Box>
         <Box sx={{overflowY:"auto", width:"100%", height:"85%"}}>
-          {todoList&&todoList.map((todo) => (
-            <Box key={todo.id} sx={{ width:"100%", height:"40px", pt:"10px", pb:"0px", display:"flex", flexDirection:"column", justifyContent:"space-between",
-              ":hover":{bgcolor:"rgb(255, 255, 255, 0.3)"}}} onMouseEnter={()=>setGrowText(todo.id)} onMouseLeave={()=>setGrowText('')}> 
+          {todoList&&todoList.map((todo, index) => (
+            <Box key={todo.id} sx={{ width:"100%", height:"40px", pt:"10px", pb:"0px", display:"flex", flexDirection:"column", justifyContent:"space-between", backgroundColor: index % 2 === 0 ? '' : 'rgb(0, 0, 0, 0.07)',}}> 
               <Box sx={{width:"100%" ,display:'flex',}}>
                 <Typography sx={{ml:"20px", width:"95%", fontSize: growText===todo.id ? '21px' : '20px'}} >
                   {todo.name}
