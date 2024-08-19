@@ -9,33 +9,25 @@ import { deleteTodoAction, getTodos } from '../../redux/todosSlice';
 
 
 const TodoList = () => {
-  const {loading, todos, error, newTodo, deletedTodo} = useSelector((state)=>state.todos) 
+  const {loading, todos, error, newTodo} = useSelector((state)=>state.todos) 
   const dispatch = useDispatch();
   const [todoList, setTodoList] = useState([])
   const [growText, setGrowText] = useState('')
+
   useEffect(() => {
     dispatch(getTodos())
   }, [dispatch])
   
+  //store'daki todos güncellenince component'deki todoList de güncelleniyor.
   useEffect(() => {
     setTodoList(todos)
   }, [todos])
-  
-
-  useEffect(() => {
-    if (deletedTodo) {
-      dispatch(getTodos())
-    }
-    //eslint-disable-next-line
-  }, [deletedTodo])
   
 
   const handleDelete = (todoId) => {
     dispatch(deleteTodoAction(todoId));
   }
 
-
-  
   
   return (
     <>
