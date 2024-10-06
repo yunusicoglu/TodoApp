@@ -17,7 +17,6 @@ const SignUp = ({handlePageChange}) => {
     if (!email || !password){
       return
     }
-
     createUserWithEmailAndPassword(auth, email, password)
     .catch((e) => {
       console.log(e)
@@ -44,16 +43,19 @@ const SignUp = ({handlePageChange}) => {
   }
   return (
     <>
-
       <Box className='login_inputs'>
-        <Typography className='login_title' sx={{}}
+        <Typography className='login_title'
         >Kayıt Ol</Typography>
         <div className='login_email'>
           <div className='email_icon_div'>
             <MarkunreadIcon color='action'/>
           </div>
           <div className='email_input_div'>
-            <input className='email_input' type="email" value={email} onChange={handleEmailChange} placeholder={emailPlaceholder} onFocus={()=>setEmailPlaceholder('')}  />
+            <input className='email_input' type="email"
+              value={email} onChange={handleEmailChange} 
+              placeholder={emailPlaceholder} 
+              onFocus={()=>setEmailPlaceholder('')}  
+            />
           </div>
         </div>
         <div className='login_password'>
@@ -61,23 +63,32 @@ const SignUp = ({handlePageChange}) => {
             <LockIcon color='action'/>
           </div>
           <div className='password_input_div'>
-            <input className='password_input' type="password" onKeyDown={handleAddKeyDown} value={password} onChange={handlePasswordChange}  placeholder={passwordPlaceholder} onFocus={()=>setPasswordPlaceholder('')} />
+            <input className='password_input' type="password" 
+              onKeyDown={handleAddKeyDown} value={password} 
+              onChange={handlePasswordChange}  
+              placeholder={passwordPlaceholder} 
+              onFocus={()=>setPasswordPlaceholder('')} 
+            />
           </div>
         </div>
         <div className='login_button'></div>
-        <Button onClick={handleButtonClick} variant='contained' sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", mt:"30px", width:"100%",
-                 borderRadius:"30px", ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, transition:'transform 0.2s ease-in-out'}}>
-          <Typography sx={{fontSize:"20px"}}>Kayıt Ol</Typography>
+        <Button onClick={handleButtonClick} variant='contained' 
+          sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", 
+            mt:"30px", width:"100%", borderRadius:"30px", 
+            ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, 
+            transition:'transform 0.2s ease-in-out'}}
+          ><Typography sx={{fontSize:"20px"}}>Kayıt Ol</Typography>
         </Button>
-        <Typography sx={{mt:"17px", fontSize:"20px"}} >Zaten kayıtlı mısınız? <Button onClick={()=>handlePageChange('signIn')} sx={{textTransform:"none", fontSize:"20px", ":hover":{backgroundColor:"white", transform:'scale(1.1)'}, transition:'transform 0.1s ease-in-out'}}>Giriş Yapın</Button> </Typography>
+        <Typography sx={{mt:"17px", fontSize:"20px"}} >
+          Zaten kayıtlı mısınız? 
+          <Button onClick={()=>handlePageChange('signIn')} 
+            sx={{textTransform:"none", fontSize:"20px", 
+            ":hover":{backgroundColor:"white", transform:'scale(1.1)'}, 
+            transition:'transform 0.1s ease-in-out'}}
+            >Giriş Yapın
+          </Button> 
+        </Typography>
       </Box>
-      {/* <Box className='login_inputs'>
-        <TextField type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='E-Posta' sx={{mt:"30px", bgcolor:"GhostWhite", width:"90%"}} inputProps={{style:{height:'18px'}}}/>
-        <TextField type='password' onKeyDown={handleAddKeyDown} value={password} onChange={(e) => setPassword(e.target.value)}  placeholder='Şifre' sx={{mt:"18px", bgcolor:"GhostWhite", width:"90%" }} inputProps={{style:{height:'18px'}}}/>
-        <Button onClick={handleButtonClick} color='success' variant='contained' sx={{textTransform:"none", mt:"25px", width:"90%"}}>
-        <Typography sx={{fontSize:"20px"}}>Kayıt Ol</Typography>
-        </Button>
-      </Box> */}
     </>
   )
 }

@@ -62,9 +62,7 @@ const todosSlice = createSlice({
     todos:null,
     error:null
   },
-  reducers:{
-
-  },
+  // reducers:{},
   extraReducers:(builder)=>{
     builder.addCase(getTodos.pending, (state)=>{
       state.loading=true

@@ -52,7 +52,10 @@ const SignIn = ({handlePageChange}) => {
             <MarkunreadIcon color='action'/>
           </div>
           <div className='email_input_div'>
-            <input className='email_input' type="email" value={email} onChange={handleEmailChange} placeholder={emailPlaceholder} onFocus={()=>setEmailPlaceholder('')}  />
+            <input className='email_input' type="email" value={email} 
+              onChange={handleEmailChange} placeholder={emailPlaceholder} 
+              onFocus={()=>setEmailPlaceholder('')}  
+            />
           </div>
         </div>
         <div className='login_password'>
@@ -60,15 +63,30 @@ const SignIn = ({handlePageChange}) => {
             <LockIcon color='action'/>
           </div>
           <div className='password_input_div'>
-            <input className='password_input' type="password" onKeyDown={handleAddKeyDown} value={password} onChange={handlePasswordChange}  placeholder={passwordPlaceholder} onFocus={()=>setPasswordPlaceholder('')} />
+            <input className='password_input' type="password" 
+              onKeyDown={handleAddKeyDown} value={password} 
+              onChange={handlePasswordChange}  placeholder={passwordPlaceholder} 
+              onFocus={()=>setPasswordPlaceholder('')} 
+            />
           </div>
         </div>
         <div className='login_button'></div>
-        <Button onClick={handleButtonClick} variant='contained' sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", mt:"30px", width:"100%",
-                 borderRadius:"30px", ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, transition:'transform 0.2s ease-in-out'}}>
+        <Button onClick={handleButtonClick} variant='contained' 
+          sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", 
+            mt:"30px", width:"100%", borderRadius:"30px", 
+            ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, 
+            transition:'transform 0.2s ease-in-out'
+          }}>
           <Typography sx={{fontSize:"20px"}}>Giriş Yap</Typography>
         </Button>
-        <Typography sx={{mt:"17px", fontSize:"20px"}} >Hesabınız yok mu? <Button onClick={()=>handlePageChange('signUp')} sx={{textTransform:"none", fontSize:"20px", ":hover":{backgroundColor:"white", transform:'scale(1.1)'}, transition:'transform 0.1s ease-in-out'}}>Kayıt Olun</Button> </Typography>
+        <Typography sx={{mt:"17px", fontSize:"20px"}} >Hesabınız yok mu? 
+          <Button onClick={()=>handlePageChange('signUp')} 
+            sx={{textTransform:"none", fontSize:"20px", 
+            ":hover":{backgroundColor:"white", transform:'scale(1.1)'}, 
+            transition:'transform 0.1s ease-in-out'
+            }}
+          >Kayıt Olun</Button>
+        </Typography>
       </Box>
     </>
   )
