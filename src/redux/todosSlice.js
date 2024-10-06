@@ -95,7 +95,8 @@ const todosSlice = createSlice({
     })
     .addCase(deleteTodoAction.fulfilled, (state, action)=>{
       state.loading = false;
-      state.deletedTodo = action.payload; //silinen todo'nun id'si state'de güncellenince component tekrar get isteği yapacak 
+      state.todos = state.todos.filter(todo => todo.id !== action.payload);
+      //state.deletedTodo = action.payload; //silinen todo'nun id'si state'de güncellenince component tekrar get isteği yapacak 
     })
     .addCase(deleteTodoAction.rejected, (state, action)=>{
       state.loading = false;
