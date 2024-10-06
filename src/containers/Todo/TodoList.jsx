@@ -4,6 +4,7 @@ import { Box, Divider, Grid, IconButton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTodoAction, getTodos } from '../../redux/todosSlice';
+import { DeleteOutline } from '@mui/icons-material';
 
 
 
@@ -43,8 +44,19 @@ const TodoList = () => {
                 <Typography sx={{ml:"20px", width:"95%", fontSize: growText===todo.id ? '21px' : '20px'}} >
                   {todo.name}
                 </Typography>
-                <IconButton onClick={()=>handleDelete(todo.id)} sx={{mt:"-6px", mr:"12px", ':hover':{transform:'scale(1.2)', backgroundColor:"transparent", }, transition:'transform 0.2s ease-in-out'}}>
-                  <TaskAltIcon sx={{color:"#363636",}}/>
+                <IconButton onClick={()=>handleDelete(todo.id)} sx={{mt:"-6px", mr:"12px", 
+                  ':hover':{
+                      backgroundColor:"transparent",
+                      '& .MuiSvgIcon-root': { 
+                        color: "#d42f2f", 
+                        transition: "color 0.3s ease",
+                      }
+                    },
+                    '& .MuiSvgIcon-root': {
+                      transition: "color 0.3s ease", 
+                    }  
+                  }}>
+                  <DeleteOutline sx={{color:"#363636",}}/>
                 </IconButton>
               </Box>
               <Divider sx={{mx:"15px"}}/>
