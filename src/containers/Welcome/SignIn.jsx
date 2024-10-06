@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { auth } from '../../firebase'
 import MarkunreadIcon from '@mui/icons-material/Markunread';
 import LockIcon from '@mui/icons-material/Lock';
+import { motion } from "framer-motion"
 
 
 const SignIn = ({handlePageChange}) => {
@@ -44,49 +45,51 @@ const SignIn = ({handlePageChange}) => {
 
   return (
     <>
-      <Box className='login_inputs'>
-        <Typography className='login_title' sx={{}}
-        >Giriş Yap</Typography>
-        <div className='login_email'>
-          <div className='email_icon_div'>
-            <MarkunreadIcon color='action'/>
+      <motion.div className='login_inputs_div' initial={{opacity:0, translateY:10}} animate={{opacity:1, translateY:0}}>
+        <Box className='login_inputs'>
+          <Typography className='login_title' sx={{}}
+          >Giriş Yap</Typography>
+          <div className='login_email'>
+            <div className='email_icon_div'>
+              <MarkunreadIcon color='action'/>
+            </div>
+            <div className='email_input_div'>
+              <input className='email_input' type="email" value={email} 
+                onChange={handleEmailChange} placeholder={emailPlaceholder} 
+                onFocus={()=>setEmailPlaceholder('')}  
+              />
+            </div>
           </div>
-          <div className='email_input_div'>
-            <input className='email_input' type="email" value={email} 
-              onChange={handleEmailChange} placeholder={emailPlaceholder} 
-              onFocus={()=>setEmailPlaceholder('')}  
-            />
+          <div className='login_password'>
+            <div className='password_icon_div'>
+              <LockIcon color='action'/>
+            </div>
+            <div className='password_input_div'>
+              <input className='password_input' type="password" 
+                onKeyDown={handleAddKeyDown} value={password} 
+                onChange={handlePasswordChange}  placeholder={passwordPlaceholder} 
+                onFocus={()=>setPasswordPlaceholder('')} 
+              />
+            </div>
           </div>
-        </div>
-        <div className='login_password'>
-          <div className='password_icon_div'>
-            <LockIcon color='action'/>
-          </div>
-          <div className='password_input_div'>
-            <input className='password_input' type="password" 
-              onKeyDown={handleAddKeyDown} value={password} 
-              onChange={handlePasswordChange}  placeholder={passwordPlaceholder} 
-              onFocus={()=>setPasswordPlaceholder('')} 
-            />
-          </div>
-        </div>
-        <div className='login_button'></div>
-        <Button onClick={handleButtonClick} variant='contained' 
-          sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", 
-            mt:"30px", width:"100%", borderRadius:"30px", 
-            ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, 
-            transition:'transform 0.2s ease-in-out'
-          }}>
-          <Typography sx={{fontSize:"20px"}}>Giriş Yap</Typography>
-        </Button>
-        <Typography sx={{mt:"17px", fontSize:"20px"}} >Hesabınız yok mu? 
-          <Button onClick={()=>handlePageChange('signUp')} 
-            sx={{textTransform:"none", fontSize:"20px", p:'6px 6px', ml:'8px',
-            ":hover":{backgroundColor:"#8bbafc", }, 
-            }}
-          >Kayıt Olun</Button>
-        </Typography>
-      </Box>
+          <div className='login_button'></div>
+          <Button onClick={handleButtonClick} variant='contained' 
+            sx={{bgcolor:'#4b8ae3', height:"60px", textTransform:"none", 
+              mt:"30px", width:"100%", borderRadius:"30px", 
+              ":hover":{bgcolor:'#155dc2',transform:'scale(1.05)'}, 
+              transition:'transform 0.2s ease-in-out'
+            }}>
+            <Typography sx={{fontSize:"20px"}}>Giriş Yap</Typography>
+          </Button>
+          <Typography sx={{mt:"17px", fontSize:"20px"}} >Hesabınız yok mu? 
+            <Button onClick={()=>handlePageChange('signUp')} 
+              sx={{textTransform:"none", fontSize:"20px", p:'6px 6px', ml:'8px',
+              ":hover":{backgroundColor:"#8bbafc", }, 
+              }}
+            >Kayıt Olun</Button>
+          </Typography>
+        </Box>
+      </motion.div>
     </>
   )
 }
