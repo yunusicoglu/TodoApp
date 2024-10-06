@@ -82,9 +82,8 @@ const SignUp = ({handlePageChange}) => {
         <Typography sx={{mt:"17px", fontSize:"20px"}} >
           Zaten kayıtlı mısınız? 
           <Button onClick={()=>handlePageChange('signIn')} 
-            sx={{textTransform:"none", fontSize:"20px", 
-            ":hover":{backgroundColor:"white", transform:'scale(1.1)'}, 
-            transition:'transform 0.1s ease-in-out'}}
+            sx={{textTransform:"none", fontSize:"20px", p:'6px 6px', ml:'8px',
+            ":hover":{backgroundColor:"#8bbafc"}}}
             >Giriş Yapın
           </Button> 
         </Typography>
